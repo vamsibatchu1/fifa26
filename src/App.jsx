@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Award, Stamp, IdCard, Shirt, Settings, Play, Image as ImageIcon } from 'lucide-react';
 import './index.css';
-import soccerSvg from './assets/soccer.svg';
 
 const itemTypes = [
   { id: 'badge', label: 'Badge', icon: Award },
@@ -89,8 +88,6 @@ function App() {
         <path d="M 50,500 Q 500,950 500,950 Q 500,500 50,500 Z" />
         <path d="M 950,500 Q 500,950 500,950 Q 500,500 950,500 Z" />
       </svg>
-
-      <img src={soccerSvg} className="stadium-graphic" alt="Stadium Map" />
 
       <header className="header" style={{ zIndex: 10 }}>
         <h1>FIFA Memorabilia<br />& Studio</h1>
