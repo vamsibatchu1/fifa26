@@ -89,13 +89,25 @@ function App() {
         <path d="M 950,500 Q 500,950 500,950 Q 500,500 950,500 Z" />
       </svg>
 
-      <header className="header" style={{ zIndex: 10 }}>
-        <h1>FIFA Memorabilia<br />& Studio</h1>
-        <p>Interactive Forge</p>
-      </header>
+      <main className="main-layout" style={{ zIndex: 10, marginTop: '2rem' }}>
+        {/* Column 1: Header & App Info */}
+        <section className="glass-panel" style={{ height: 'fit-content', border: 'none', padding: '0', background: 'transparent' }}>
+          <header className="header" style={{ margin: '0 0 2rem 0', textAlign: 'left', maxWidth: '100%' }}>
+            <h1>FIFA Memorabilia<br />& Studio</h1>
+            <p>Interactive Forge</p>
+          </header>
 
-      <main className="main-layout" style={{ zIndex: 10 }}>
-        {/* Left Panel: Configuration */}
+          <div style={{ padding: '0 0.5rem' }}>
+            <p style={{ fontFamily: 'var(--font-sans)', fontSize: '1.25rem', color: 'var(--text-primary)', lineHeight: 1.5, marginBottom: '1.5rem', fontWeight: 500 }}>
+              Welcome to the definitive generative studio designed to materialize your digital football legacy.
+            </p>
+            <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
+              Select a format, configure your specifications, and press execute to run the AI engine. Your bespoke stamp, badge, card, or gear will be instantly manufactured using ultra-premium geometric and typographical styling matching this exact architectural forge aesthetic.
+            </p>
+          </div>
+        </section>
+
+        {/* Column 2: Configuration Panel */}
         <section className="glass-panel">
           <h2 className="panel-header">
             Specifications
