@@ -77,18 +77,6 @@ function App() {
 
   return (
     <div className="app-container">
-      {/* Background Elements */}
-      <div className="pitch-bg"></div>
-
-      {/* Geometric Overlay closely mirroring the reference image */}
-      <svg className="geometric-overlay" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="500" cy="500" r="450" />
-        <path d="M 50,500 Q 500,50 500,50 Q 500,500 50,500 Z" />
-        <path d="M 950,500 Q 500,50 500,50 Q 500,500 950,500 Z" />
-        <path d="M 50,500 Q 500,950 500,950 Q 500,500 50,500 Z" />
-        <path d="M 950,500 Q 500,950 500,950 Q 500,500 950,500 Z" />
-      </svg>
-
       <main className="main-layout" style={{ zIndex: 10, marginTop: '2rem' }}>
         {/* Column 1: Header & App Info */}
         <section className="glass-panel" style={{ height: 'fit-content', border: 'none', padding: '0', background: 'transparent' }}>

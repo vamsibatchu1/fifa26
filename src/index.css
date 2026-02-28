@@ -35,22 +35,6 @@ body {
   position: relative;
 }
 
-/* Grid Background Overlay */
-.pitch-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -2;
-  pointer-events: none;
-  background-image: 
-    linear-gradient(rgba(255, 87, 20, 0.5) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 87, 20, 0.5) 1px, transparent 1px);
-  background-size: 80px 80px;
-  background-position: center center;
-}
-
 /* Base Layout */
 .app-container {
   max-width: 1680px;
@@ -330,36 +314,6 @@ body {
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-/* Stadium Background Overlay */
-.stadium-graphic {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(1.1);
-  width: 100vw;
-  max-width: 1200px;
-  opacity: 0.15; 
-  z-index: 1;
-  pointer-events: none;
-  filter: drop-shadow(0 0 10px var(--accent-orange));
-  mix-blend-mode: screen;
-}
-
-/* Geometric SVG Overlay */
-.geometric-overlay {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90vmin;
-  height: 90vmin;
-  z-index: -1;
-  pointer-events: none;
-  stroke: var(--accent-orange);
-  stroke-width: 1.5;
-  fill: none;
 }
 
 /* Code Preview */
