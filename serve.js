@@ -13,37 +13,58 @@ app.post('/api/generate', async (req, res) => {
     try {
         const { prompt_data } = req.body;
 
-        // Construct the prompt describing the visual based on user input
-        let visualPrompt = `A visually stunning FIFA World Cup ${prompt_data.itemType}. `;
+        let visualPrompt = '';
 
-        if (prompt_data.country) {
-            visualPrompt += `The design perfectly incorporates the national colors, flag aesthetics, and cultural motifs of ${prompt_data.country}. `;
-        }
+        if (prompt_data.itemType === 'stamp') {
+            const countryStr = prompt_data.country || 'Canada';
+            const numberStr = prompt_data.jerseyNumber || '15';
 
-        if (prompt_data.jerseyNumber) {
-            visualPrompt += `The number ${prompt_data.jerseyNumber} is prominently and stylistically featured in the composition. `;
-        }
+            const lines = [];
+            if (prompt_data.name) lines.push(prompt_data.name);
+            if (prompt_data.favoritePlayer) lines.push(prompt_data.favoritePlayer);
+            if (prompt_data.quotes) lines.push(prompt_data.quotes);
 
-        if (prompt_data.favoritePlayer || prompt_data.name) {
-            const names = [];
-            if (prompt_data.favoritePlayer) names.push(prompt_data.favoritePlayer);
-            if (prompt_data.name) names.push(prompt_data.name);
-            visualPrompt += `The typography elegantly displays the text: "${names.join(', ')}". `;
-        }
+            let textDesc = '"Geography" on the first line and "Géographie" on the second line, both';
+            if (lines.length === 1) {
+                textDesc = `"${lines[0]}"`;
+            } else if (lines.length === 2) {
+                textDesc = `"${lines[0]}" on the first line and "${lines[1]}" on the second line`;
+            } else if (lines.length === 3) {
+                textDesc = `"${lines[0]}" on the first line, "${lines[1]}" on the second line, and "${lines[2]}" on the third line`;
+            }
 
-        if (prompt_data.quotes) {
-            visualPrompt += `Includes the inspirational quote: "${prompt_data.quotes}". `;
-        }
+            visualPrompt = `A close-up photograph of a vintage, perforated-edge ${countryStr} postage stamp from 1974, set against a deep, solid black background. The stamp features a textured, light green paper background printed with a subtle, fine-line square grid pattern. The central image is a graphic, geometric, abstract design rendered with pixelated white blocks and a solid vertical red bar, representing computer-generated data analysis.
 
-        // Add aesthetic modifiers based on item type
-        if (prompt_data.itemType === 'badge') {
-            visualPrompt += `The style is a metallic, highly-detailed crest, shiny enamel pin or embroidered patch. High quality, volumetric lighting, isolated on a clean background.`;
-        } else if (prompt_data.itemType === 'stamp') {
-            visualPrompt += `The style is a vintage or modern postage stamp, with perforated edges, exact pricing marks, ink cancelations, and beautiful miniature illustration. High resolution, macro photography feel.`;
-        } else if (prompt_data.itemType === 'player_card') {
-            visualPrompt += `The style is a premium holographic trading card, with stats framing, foil reflections, dramatic action poses, and dynamic borders. Collector's edition style.`;
+In the upper-left corner, the word "${countryStr}" is printed in a clean, sans-serif black font. In the upper-right corner, the denomination "${numberStr}" is printed in the same black font. A bold, horizontal red line bisects the green grid area, starting from the left edge. A prominent vertical red bar is positioned on the right-hand side of the grid, perfectly intersecting the horizontal red line to form a coordinate-like axis.
+
+To the right of the vertical red bar, there is a cluster of white, pixel-like rectangular data points, irregularly scattered but vertically oriented, resembling a computer graph or a punch card data representation. These points are concentrated near the vertical red line. In the lower-right corner, the stamp includes the text: ${textDesc}, in a clean, black sans-serif font. The stamp's edges are rough and perforated, showing fibers and the fibrous quality of the paper. The stamp has a matte finish.`;
         } else {
-            visualPrompt += `The style is high-end athletic apparel or premium sporting goods memorabilia, photorealistic, dramatic studio lighting.`;
+            visualPrompt = `A visually stunning FIFA World Cup ${prompt_data.itemType}. `;
+
+            if (prompt_data.country) {
+                visualPrompt += `The design perfectly incorporates the national colors, flag aesthetics, and cultural motifs of ${prompt_data.country}. `;
+            }
+            if (prompt_data.jerseyNumber) {
+                visualPrompt += `The number ${prompt_data.jerseyNumber} is prominently and stylistically featured in the composition. `;
+            }
+            if (prompt_data.favoritePlayer || prompt_data.name) {
+                const names = [];
+                if (prompt_data.favoritePlayer) names.push(prompt_data.favoritePlayer);
+                if (prompt_data.name) names.push(prompt_data.name);
+                visualPrompt += `The typography elegantly displays the text: "${names.join(', ')}". `;
+            }
+            if (prompt_data.quotes) {
+                visualPrompt += `Includes the inspirational quote: "${prompt_data.quotes}". `;
+            }
+
+            // Add aesthetic modifiers based on item type
+            if (prompt_data.itemType === 'badge') {
+                visualPrompt += `The style is a metallic, highly-detailed crest, shiny enamel pin or embroidered patch. High quality, volumetric lighting, isolated on a clean background.`;
+            } else if (prompt_data.itemType === 'player_card') {
+                visualPrompt += `The style is a premium holographic trading card, with stats framing, foil reflections, dramatic action poses, and dynamic borders. Collector's edition style.`;
+            } else {
+                visualPrompt += `The style is high-end athletic apparel or premium sporting goods memorabilia, photorealistic, dramatic studio lighting.`;
+            }
         }
 
         console.log("Sending prompt to Imagen 4:", visualPrompt);
