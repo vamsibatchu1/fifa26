@@ -33,7 +33,7 @@ app.post('/api/generate', async (req, res) => {
                 textDesc = `"${lines[0]}" on the first line, "${lines[1]}" on the second line, and "${lines[2]}" on the third line`;
             }
 
-            visualPrompt = `A close-up photograph of a vintage, perforated-edge ${countryStr} postage stamp from 1974, set against a deep, solid black background. The stamp features a textured, light green paper background printed with a subtle, fine-line square grid pattern. The central image is a graphic, geometric, abstract design rendered with pixelated white blocks and a solid vertical red bar, representing computer-generated data analysis.
+            visualPrompt = `A close-up photograph of a vintage, perforated-edge ${countryStr} postage stamp from 1974, set against a plain black background with no texture. The stamp features a textured, light green paper background printed with a subtle, fine-line square grid pattern. The central image is a graphic, geometric, abstract design rendered with pixelated white blocks and a solid vertical red bar, representing computer-generated data analysis.
 
 In the upper-left corner, the word "${countryStr}" is printed in a clean, sans-serif black font. In the upper-right corner, the denomination "${numberStr}" is printed in the same black font. A bold, horizontal red line bisects the green grid area, starting from the left edge. A prominent vertical red bar is positioned on the right-hand side of the grid, perfectly intersecting the horizontal red line to form a coordinate-like axis.
 

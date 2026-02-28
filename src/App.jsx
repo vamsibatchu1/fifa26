@@ -221,8 +221,7 @@ function App() {
             <div className="result-display">
               {result.image ? (
                 <div style={{ padding: '0 2rem', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <img src={result.image} alt="Generated Memorabilia" style={{ maxWidth: '100%', maxHeight: '400px', objectFit: 'contain', border: '1px solid var(--accent-orange)', marginBottom: '1.5rem', boxShadow: '0 0 20px rgba(255, 87, 20, 0.2)' }} />
-                  <h3 style={{ fontSize: '1.5rem', fontFamily: 'var(--font-serif)', marginBottom: '0.5rem', color: 'var(--accent-orange)' }}>Forge Successful</h3>
+                  <img src={result.image} alt="Generated Memorabilia" style={{ maxWidth: '100%', maxHeight: '450px', objectFit: 'contain' }} />
                 </div>
               ) : (
                 <>
@@ -231,13 +230,6 @@ function App() {
                   <p style={{ color: result.status === 'error' ? 'red' : 'var(--text-secondary)', fontFamily: 'var(--font-sans)', fontSize: '0.875rem', marginBottom: '2rem' }}>{result.message}</p>
                 </>
               )}
-
-              <div style={{ width: '100%', textAlign: 'left', marginTop: result.image ? '1rem' : '0' }}>
-                <span className="form-label">Payload</span>
-                <pre className="json-preview">
-                  {JSON.stringify(result.prompt_data, null, 2)}
-                </pre>
-              </div>
             </div>
           )}
         </section>
