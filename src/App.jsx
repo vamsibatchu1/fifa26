@@ -79,8 +79,8 @@ function App() {
     <div className="app-container">
       <main className="main-layout" style={{ zIndex: 10, marginTop: '2rem' }}>
         {/* Column 1: Header & App Info */}
-        <section className="glass-panel" style={{ height: 'fit-content', border: 'none', padding: '0', background: 'transparent' }}>
-          <header className="header" style={{ margin: '0 0 2rem 0', textAlign: 'left', maxWidth: '100%' }}>
+        <section className="glass-panel" style={{ height: 'fit-content' }}>
+          <header className="header">
             <h1>FIFA Memorabilia<br />& Studio</h1>
             <p>Interactive Forge</p>
           </header>

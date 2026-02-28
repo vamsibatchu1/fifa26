@@ -48,12 +48,6 @@ body {
 .header {
   margin-bottom: 2rem;
   position: relative;
-  text-align: center;
-  max-width: fit-content;
-  margin: 0 auto 3rem auto;
-  background: var(--bg-primary);
-  padding: 1rem 2rem;
-  border: 1px solid var(--accent-white);
 }
 
 .header h1 {
