@@ -225,7 +225,7 @@ function App() {
                 </div>
               ) : (
                 <>
-                  <Award size={64} style={{ color: 'var(--accent-orange)', marginBottom: '1.5rem' }} strokeWidth={1} />
+                  <Award size={64} style={{ color: 'var(--accent-white)', marginBottom: '1.5rem' }} strokeWidth={1} />
                   <h3 style={{ fontSize: '2rem', fontFamily: 'var(--font-serif)', marginBottom: '1rem' }}>{result.status === 'error' ? 'Failure' : 'Generated'}</h3>
                   <p style={{ color: result.status === 'error' ? 'red' : 'var(--text-secondary)', fontFamily: 'var(--font-sans)', fontSize: '0.875rem', marginBottom: '2rem' }}>{result.message}</p>
                 </>
