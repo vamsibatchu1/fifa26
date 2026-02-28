@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Award, Stamp, IdCard, Shirt, Settings, Play, Image as ImageIcon } from 'lucide-react';
 import './index.css';
+import soccerSvg from './assets/soccer.svg';
 
 const itemTypes = [
   { id: 'badge', label: 'Badge', icon: Award },
@@ -92,6 +93,10 @@ function App() {
             <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
               Select a format, configure your specifications, and press execute to run the AI engine. Your bespoke stamp, badge, card, or gear will be instantly manufactured using ultra-premium geometric and typographical styling matching this exact architectural forge aesthetic.
             </p>
+          </div>
+
+          <div style={{ marginTop: 'auto', paddingTop: '3rem', display: 'flex', justifyContent: 'center', opacity: 0.8 }}>
+            <img src={soccerSvg} alt="Football Field Schematic" style={{ width: '100%', maxWidth: '300px', filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.2))' }} />
           </div>
         </section>
 
