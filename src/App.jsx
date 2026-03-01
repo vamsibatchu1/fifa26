@@ -149,7 +149,7 @@ function App() {
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
               <div className="form-group">
-                <label className="form-label" htmlFor="jerseyNumber">No.</label>
+                <label className="form-label" htmlFor="jerseyNumber">Jersey Number</label>
                 <input
                   type="number"
                   id="jerseyNumber"
