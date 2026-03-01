@@ -100,19 +100,8 @@ const LoadingScreen = ({ onComplete, qualifiedTeams }) => {
                         src={`https://flagcdn.com/w320/${qualifiedTeams[flagIndex].code}.png`}
                         alt={qualifiedTeams[flagIndex].name}
                         className="loading-svg"
-                        style={{ width: '320px', borderRadius: '4px', border: '2px solid rgba(255,255,255,0.7)', transition: 'none' }}
+                        style={{ width: '320px', borderRadius: '4px', transition: 'none' }}
                     />
-                    <p style={{
-                        marginTop: '32px',
-                        color: 'var(--text-primary)',
-                        fontFamily: 'var(--font-newsreader)',
-                        fontSize: '1.5rem',
-                        fontStyle: 'italic',
-                        fontWeight: 400,
-                        textAlign: 'center'
-                    }}>
-                        {qualifiedTeams[flagIndex].name.toLowerCase()}
-                    </p>
                 </div>
             )}
         </div>
