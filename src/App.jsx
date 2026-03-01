@@ -83,10 +83,9 @@ function App() {
         <section className="glass-panel" style={{ height: 'fit-content' }}>
           <header className="header">
             <h1>FIFA Memorabilia<br />& Studio</h1>
-            <p>Interactive Forge</p>
           </header>
 
-          <div style={{ padding: '0 0.5rem' }}>
+          <div style={{ padding: '0' }}>
             <p style={{ fontFamily: 'var(--font-sans)', fontSize: '1.25rem', color: 'var(--text-primary)', lineHeight: 1.5, marginBottom: '1.5rem', fontWeight: 500 }}>
               Welcome to the definitive generative studio designed to materialize your digital football legacy.
             </p>
