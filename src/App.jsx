@@ -101,13 +101,8 @@ function App() {
 
         {/* Column 2: Configuration Panel */}
         <section className="glass-panel">
-          <h2 className="panel-header">
-            Specifications
-          </h2>
-
           <form onSubmit={handleGenerate} className="form-group" style={{ gap: '2rem' }}>
             <div className="form-group">
-              <label className="form-label">Format Type</label>
               <div className="selection-grid">
                 {itemTypes.map((item) => {
                   const Icon = item.icon;
