@@ -240,8 +240,37 @@ body {
   filter: grayscale(0%);
 }
 
-.selection-card.active svg {
-  color: var(--bg-primary);
+/* Loading Screen Styles */
+.loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.loading-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-svg {
+  width: 250px;
+  max-width: 80vw;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+}
+
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
 }
 
 /* Action Button */
