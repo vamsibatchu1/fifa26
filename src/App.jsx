@@ -10,6 +10,29 @@ const itemTypes = [
   { id: 'memorabilia', label: 'Gear', icon: Shirt }
 ];
 
+const qualifiedTeams = [
+  // AFC (8)
+  { name: 'Australia', code: 'au' }, { name: 'Iran', code: 'ir' }, { name: 'Japan', code: 'jp' }, { name: 'Jordan', code: 'jo' },
+  { name: 'Qatar', code: 'qa' }, { name: 'Saudi Arabia', code: 'sa' }, { name: 'South Korea', code: 'kr' }, { name: 'Uzbekistan', code: 'uz' },
+  // CAF (10)
+  { name: 'Algeria', code: 'dz' }, { name: 'Cape Verde', code: 'cv' }, { name: 'Egypt', code: 'eg' }, { name: 'Ghana', code: 'gh' },
+  { name: 'Ivory Coast', code: 'ci' }, { name: 'Morocco', code: 'ma' }, { name: 'Senegal', code: 'sn' }, { name: 'South Africa', code: 'za' },
+  { name: 'Tunisia', code: 'tn' }, { name: 'Nigeria', code: 'ng' },
+  // CONCACAF (6)
+  { name: 'Canada', code: 'ca' }, { name: 'Curaçao', code: 'cw' }, { name: 'Haiti', code: 'ht' }, { name: 'Mexico', code: 'mx' },
+  { name: 'Panama', code: 'pa' }, { name: 'United States', code: 'us' },
+  // CONMEBOL (7)
+  { name: 'Argentina', code: 'ar' }, { name: 'Brazil', code: 'br' }, { name: 'Colombia', code: 'co' }, { name: 'Ecuador', code: 'ec' },
+  { name: 'Paraguay', code: 'py' }, { name: 'Uruguay', code: 'uy' }, { name: 'Chile', code: 'cl' },
+  // OFC (1)
+  { name: 'New Zealand', code: 'nz' },
+  // UEFA (16)
+  { name: 'Austria', code: 'at' }, { name: 'Belgium', code: 'be' }, { name: 'Croatia', code: 'hr' }, { name: 'England', code: 'gb-eng' },
+  { name: 'France', code: 'fr' }, { name: 'Germany', code: 'de' }, { name: 'Netherlands', code: 'nl' }, { name: 'Norway', code: 'no' },
+  { name: 'Portugal', code: 'pt' }, { name: 'Scotland', code: 'gb-sct' }, { name: 'Spain', code: 'es' }, { name: 'Switzerland', code: 'ch' },
+  { name: 'Poland', code: 'pl' }, { name: 'Italy', code: 'it' }, { name: 'Denmark', code: 'dk' }, { name: 'Turkey', code: 'tr' }
+];
+
 function App() {
   const [formData, setFormData] = useState({
     itemType: 'badge',
@@ -121,17 +144,24 @@ function App() {
             </div>
 
             <div className="form-group">
-              <label className="form-label" htmlFor="country">Nation</label>
-              <input
-                type="text"
-                id="country"
-                name="country"
-                className="form-input"
-                placeholder="Ex: France, Argentina..."
-                value={formData.country}
-                onChange={handleInputChange}
-                required
-              />
+              <label className="form-label">Nation</label>
+              <div className="nation-grid">
+                {qualifiedTeams.map((team) => (
+                  <button
+                    key={team.code}
+                    type="button"
+                    className={`nation-btn ${formData.country === team.name ? 'active' : ''}`}
+                    onClick={() => setFormData(prev => ({ ...prev, country: team.name }))}
+                    title={team.name}
+                  >
+                    <img
+                      src={`https://flagcdn.com/w80/${team.code}.png`}
+                      alt={team.name}
+                      style={{ width: '100%', height: 'auto', display: 'block' }}
+                    />
+                  </button>
+                ))}
+              </div>
             </div>
 
             <div className="form-group">
