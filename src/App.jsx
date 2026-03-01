@@ -106,7 +106,7 @@ function App() {
     <div className="app-container">
       <AnimatePresence mode="wait">
         {isLoading ? (
-          <LoadingScreen key="loading" onComplete={() => setIsLoading(false)} />
+          <LoadingScreen key="loading" qualifiedTeams={qualifiedTeams} onComplete={() => setIsLoading(false)} />
         ) : (
           <motion.main
             key="content"

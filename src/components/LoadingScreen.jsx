@@ -8,49 +8,61 @@ import stadiumIcon from '../assets/loading/noun-stadium-1501053-FFFFFF.svg';
 import cupIcon from '../assets/loading/noun-world-cup-1867221-FFFFFF.svg';
 
 const loadingData = [
-    { icon: stadiumIcon, text: "preparing the stage" },
-    { icon: soccerIcon, text: "setting up the pitch" },
-    { icon: cleatsIcon, text: "lacing up the cleats" },
-    { icon: cupIcon, text: "dreaming the world cup" }
+    { icon: stadiumIcon, text: "preparing the stage", type: 'vignette' },
+    { icon: soccerIcon, text: "setting up the pitch", type: 'vignette' },
+    { icon: cleatsIcon, text: "lacing up the cleats", type: 'vignette' },
+    { icon: cupIcon, text: "dreaming the world cup", type: 'vignette' }
 ];
 
-const LoadingScreen = ({ onComplete }) => {
-    const [index, setIndex] = useState(-1); // Start with -1 for initial 0.5s delay
+const LoadingScreen = ({ onComplete, qualifiedTeams }) => {
+    const [vignetteIndex, setVignetteIndex] = useState(-1);
+    const [flagIndex, setFlagIndex] = useState(-1);
 
     useEffect(() => {
-        // Initial 0.5s pause
-        const startTimeout = setTimeout(() => {
-            setIndex(0);
+        // Initial delay before vignettes
+        const initialDelay = setTimeout(() => {
+            setVignetteIndex(0);
         }, 500);
-
-        return () => clearTimeout(startTimeout);
+        return () => clearTimeout(initialDelay);
     }, []);
 
+    // Handle Vignette Sequence
     useEffect(() => {
-        if (index >= 0 && index < loadingData.length) {
-            // 1s duration for each icon
-            const nextTimeout = setTimeout(() => {
-                if (index === loadingData.length - 1) {
-                    // Final 0.5s pause after last icon
-                    setTimeout(() => {
-                        onComplete();
-                    }, 500);
-                    setIndex(loadingData.length); // Out of bounds to clear screen
+        if (vignetteIndex >= 0 && vignetteIndex < loadingData.length) {
+            const vignetteTimeout = setTimeout(() => {
+                if (vignetteIndex === loadingData.length - 1) {
+                    // Finish vignettes, start flags immediately
+                    setVignetteIndex(loadingData.length);
+                    setFlagIndex(0);
                 } else {
-                    setIndex(prev => prev + 1);
+                    setVignetteIndex(prev => prev + 1);
                 }
             }, 1000);
-
-            return () => clearTimeout(nextTimeout);
+            return () => clearTimeout(vignetteTimeout);
         }
-    }, [index, onComplete]);
+    }, [vignetteIndex]);
+
+    // Handle Flag Sequence (Rapid-fire 0.1s each)
+    useEffect(() => {
+        if (flagIndex >= 0 && flagIndex < qualifiedTeams.length) {
+            const flagTimeout = setTimeout(() => {
+                if (flagIndex === qualifiedTeams.length - 1) {
+                    onComplete();
+                } else {
+                    setFlagIndex(prev => prev + 1);
+                }
+            }, 100);
+            return () => clearTimeout(flagTimeout);
+        }
+    }, [flagIndex, onComplete, qualifiedTeams]);
 
     return (
         <div className="loading-container">
+            {/* Phase 1: Vignettes with Smooth Transitons */}
             <AnimatePresence mode="wait">
-                {index >= 0 && index < loadingData.length && (
+                {vignetteIndex >= 0 && vignetteIndex < loadingData.length && (
                     <motion.div
-                        key={index}
+                        key={`vignette-${vignetteIndex}`}
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
@@ -59,7 +71,7 @@ const LoadingScreen = ({ onComplete }) => {
                         style={{ flexDirection: 'column' }}
                     >
                         <img
-                            src={loadingData[index].icon}
+                            src={loadingData[vignetteIndex].icon}
                             alt="Loading..."
                             className="loading-svg"
                         />
@@ -72,11 +84,37 @@ const LoadingScreen = ({ onComplete }) => {
                             fontWeight: 400,
                             textAlign: 'center'
                         }}>
-                            {loadingData[index].text}
+                            {loadingData[vignetteIndex].text}
                         </p>
                     </motion.div>
                 )}
             </AnimatePresence>
+
+            {/* Phase 2: Rapid-fire Flags (No AnimatePresence for speed) */}
+            {flagIndex >= 0 && flagIndex < qualifiedTeams.length && (
+                <div
+                    className="loading-icon-wrapper"
+                    style={{ flexDirection: 'column' }}
+                >
+                    <img
+                        src={`https://flagcdn.com/w320/${qualifiedTeams[flagIndex].code}.png`}
+                        alt={qualifiedTeams[flagIndex].name}
+                        className="loading-svg"
+                        style={{ width: '320px', borderRadius: '4px', border: '2px solid rgba(255,255,255,0.7)', transition: 'none' }}
+                    />
+                    <p style={{
+                        marginTop: '32px',
+                        color: 'var(--text-primary)',
+                        fontFamily: 'var(--font-newsreader)',
+                        fontSize: '1.5rem',
+                        fontStyle: 'italic',
+                        fontWeight: 400,
+                        textAlign: 'center'
+                    }}>
+                        {qualifiedTeams[flagIndex].name.toLowerCase()}
+                    </p>
+                </div>
+            )}
         </div>
     );
 };
