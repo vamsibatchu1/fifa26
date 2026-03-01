@@ -8,10 +8,10 @@ import stadiumIcon from '../assets/loading/noun-stadium-1501053-FFFFFF.svg';
 import cupIcon from '../assets/loading/noun-world-cup-1867221-FFFFFF.svg';
 
 const loadingData = [
-    { icon: stadiumIcon, text: "PREPARING THE STAGE" },
-    { icon: soccerIcon, text: "SETTING UP THE PITCH" },
-    { icon: cleatsIcon, text: "LACING UP THE CLEATS" },
-    { icon: cupIcon, text: "DREAMING THE WORLD CUP" }
+    { icon: stadiumIcon, text: "preparing the stage" },
+    { icon: soccerIcon, text: "setting up the pitch" },
+    { icon: cleatsIcon, text: "lacing up the cleats" },
+    { icon: cupIcon, text: "dreaming the world cup" }
 ];
 
 const LoadingScreen = ({ onComplete }) => {
@@ -66,12 +66,11 @@ const LoadingScreen = ({ onComplete }) => {
                         <p style={{
                             marginTop: '32px',
                             color: 'var(--text-primary)',
-                            fontFamily: 'var(--font-serif)',
-                            fontSize: '1rem',
-                            letterSpacing: '0.4em',
-                            fontWeight: 600,
-                            textAlign: 'center',
-                            textTransform: 'uppercase'
+                            fontFamily: 'var(--font-newsreader)',
+                            fontSize: '1.5rem',
+                            fontStyle: 'italic',
+                            fontWeight: 400,
+                            textAlign: 'center'
                         }}>
                             {loadingData[index].text}
                         </p>
