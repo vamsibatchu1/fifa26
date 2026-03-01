@@ -204,7 +204,7 @@ function App() {
         </section>
 
         {/* Right Panel: Result Preview */}
-        <section className="glass-panel result-panel">
+        <section className="glass-panel result-panel" style={{ border: 'none' }}>
           {isGenerating && (
             <div className="loader-container">
               <div className="spinner"></div>
