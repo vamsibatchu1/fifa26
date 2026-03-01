@@ -95,7 +95,7 @@ function App() {
             </p>
           </div>
 
-          <div style={{ marginTop: 'auto', paddingTop: '3rem', display: 'flex', justifyContent: 'center', opacity: 0.8 }}>
+          <div style={{ marginTop: 'auto', paddingTop: '3rem', display: 'flex', justifyContent: 'flex-start', paddingLeft: '0.5rem', opacity: 0.8 }}>
             <img src={soccerSvg} alt="Football Field Schematic" style={{ width: '100%', maxWidth: '300px', filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.2))' }} />
           </div>
         </section>
