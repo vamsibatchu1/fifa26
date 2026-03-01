@@ -58,52 +58,75 @@ const LoadingScreen = ({ onComplete, qualifiedTeams }) => {
 
     return (
         <div className="loading-container">
-            {/* Phase 1: Vignettes with Smooth Transitons */}
-            <AnimatePresence mode="wait">
-                {vignetteIndex >= 0 && vignetteIndex < loadingData.length && (
-                    <motion.div
-                        key={`vignette-${vignetteIndex}`}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.3 }}
-                        className="loading-icon-wrapper"
-                        style={{ flexDirection: 'column' }}
-                    >
-                        <img
-                            src={loadingData[vignetteIndex].icon}
-                            alt="Loading..."
-                            className="loading-svg"
-                        />
-                        <p style={{
-                            marginTop: '32px',
-                            color: 'var(--text-primary)',
-                            fontFamily: 'var(--font-newsreader)',
-                            fontSize: '1.5rem',
-                            fontStyle: 'italic',
-                            fontWeight: 400,
-                            textAlign: 'center'
-                        }}>
-                            {loadingData[vignetteIndex].text}
-                        </p>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+            {/* Standardized wrapper to anchor centering */}
+            <div
+                className="loading-icon-wrapper"
+                style={{
+                    flexDirection: 'column',
+                    width: '320px',
+                    minHeight: '400px',
+                    position: 'relative',
+                    textAlign: 'center'
+                }}
+            >
+                {/* Image hosting area - fixed height to anchor vertical center */}
+                <div style={{ height: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <AnimatePresence mode="wait">
+                        {vignetteIndex >= 0 && vignetteIndex < loadingData.length && (
+                            <motion.img
+                                key={`vignette-${vignetteIndex}`}
+                                src={loadingData[vignetteIndex].icon}
+                                alt="Loading..."
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 1.05 }}
+                                transition={{ duration: 0.3 }}
+                                className="loading-svg"
+                                style={{ width: '250px', height: '250px', objectFit: 'contain', position: 'absolute' }}
+                            />
+                        )}
+                    </AnimatePresence>
 
-            {/* Phase 2: Rapid-fire Flags (No AnimatePresence for speed) */}
-            {flagIndex >= 0 && flagIndex < qualifiedTeams.length && (
-                <div
-                    className="loading-icon-wrapper"
-                    style={{ flexDirection: 'column' }}
-                >
-                    <img
-                        src={`https://flagcdn.com/w320/${qualifiedTeams[flagIndex].code}.png`}
-                        alt={qualifiedTeams[flagIndex].name}
-                        className="loading-svg"
-                        style={{ width: '320px', borderRadius: '4px', transition: 'none' }}
-                    />
+                    {/* Flags Phase - outside AnimatePresence for speed, but inside the same anchor area */}
+                    {flagIndex >= 0 && flagIndex < qualifiedTeams.length && (
+                        <img
+                            src={`https://flagcdn.com/w320/${qualifiedTeams[flagIndex].code}.png`}
+                            alt={qualifiedTeams[flagIndex].name}
+                            style={{
+                                width: '320px',
+                                height: '200px',
+                                objectFit: 'contain',
+                                borderRadius: '4px'
+                            }}
+                        />
+                    )}
                 </div>
-            )}
+
+                {/* Text Area - below image area */}
+                <div style={{ height: '60px', marginTop: '32px' }}>
+                    <AnimatePresence mode="wait">
+                        {vignetteIndex >= 0 && vignetteIndex < loadingData.length && (
+                            <motion.p
+                                key={`text-${vignetteIndex}`}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.3 }}
+                                style={{
+                                    color: 'var(--text-primary)',
+                                    fontFamily: 'var(--font-newsreader)',
+                                    fontSize: '1.5rem',
+                                    fontStyle: 'italic',
+                                    fontWeight: 400,
+                                    margin: 0
+                                }}
+                            >
+                                {loadingData[vignetteIndex].text}
+                            </motion.p>
+                        )}
+                    </AnimatePresence>
+                </div>
+            </div>
         </div>
     );
 };
